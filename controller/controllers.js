@@ -45,7 +45,7 @@ export const postSingleHero = async (req, res) => {
             const finalfile = await mgsave.save();
             res.status(200).json(finalfile);
         }
-        else if(scrollBy.length<1){
+        else if(db.length<1){
         const mgsave = new model({
             userMail : cookie.mail,
             fileName: file.filename,

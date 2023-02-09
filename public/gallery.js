@@ -81,7 +81,7 @@ inFile.onchange = async () => {
         
         await fetch('/gallery', requestOptions)
         .then(response => response.json())
-        .then(result => result)
+        .then(result => console.log(result) )
         .then(() => window.location.reload(true))
         .catch(error => alert(error));
         // console.log(neededType.type);
@@ -98,7 +98,7 @@ const all = document.cookie;
 // console.log(all.split(';'))
 
 // const arr =[];
-console.log(cookieProfile)
+console.log(cookieProfile, value, 'shir')
 const getDb = async () => {
    
     var mainArr = new Array;

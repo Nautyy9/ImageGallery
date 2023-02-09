@@ -19,7 +19,7 @@ export const getSingleHero = async (req, res) => {
         //     db[0].profile = data;
         //     await db[0].save();
         // }
-        // console.log(checkprofile.length, db); 
+        console.log( db, 'hehawwwww'); 
         res.status(200).json(db);
 }
 catch(err){
@@ -30,9 +30,22 @@ catch(err){
 export const postSingleHero = async (req, res) => {
     try{
         const cookie = req.cookies
-        console.log(cookie, 'suiii');
+        const db = await model.find()
+        console.log(cookie, 'suiii',db[0].profile);
         const file = req.file
         // console.log(file.fileName);
+        if(db.length>=1){
+            const mgsave = new model({
+                userMail : cookie.mail,
+                fileName: file.filename,
+                profile: db[0].profile,
+                file: file.path,
+                uploadTime: Date.now(), 
+            })
+            const finalfile = await mgsave.save();
+            res.status(200).json(finalfile);
+        }
+        else if(scrollBy.length<1){
         const mgsave = new model({
             userMail : cookie.mail,
             fileName: file.filename,
@@ -41,10 +54,11 @@ export const postSingleHero = async (req, res) => {
             uploadTime: Date.now(), 
         })
         const finalfile = await mgsave.save();
+        res.status(200).json(finalfile);
+    }
     // const filename = req.file
     //const data = req.file.filename;
-    // console.log(finalfile)
-    res.status(200).json(finalfile);
+    
     }
     catch(err) {
         res.status(200).json(err.message);

@@ -31,14 +31,15 @@ export const postSingleHero = async (req, res) => {
     try{
         const cookie = req.cookies
         const db = await model.find()
-        console.log(cookie, 'suiii',db[0].profile);
+        console.log(db)
+        console.log(cookie, 'suiii');
         const file = req.file
         // console.log(file.fileName);
-        if(db.length>=1){
+        if(db.length>=1 && cookie.profile && cookie.mail){
             const mgsave = new model({
                 userMail : cookie.mail,
                 fileName: file.filename,
-                profile: db[0].profile,
+                profile: cookie.profile,
                 file: file.path,
                 uploadTime: Date.now(), 
             })

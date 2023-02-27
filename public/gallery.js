@@ -62,7 +62,6 @@ class need {
 
 const types = ['image/png', 'image/jpeg'];
 
-
 let neededType;  
 
 inFile.onchange = async () => {

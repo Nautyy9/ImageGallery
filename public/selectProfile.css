@@ -1,7 +1,12 @@
 *{
     margin: 0;
     padding: 0;
-    background-color:  #FCBA7F;
+    background-color: linear-gradient(
+      to top right,
+      rgba(29, 38, 113, 0.75),
+      rgba(255,255,255,0.8)
+      rgba(195, 65, 150, 0.75)
+    );
 }
 @import url('https://fonts.googleapis.com/css?family=Quicksand');
 
@@ -12,6 +17,22 @@ body {
   height: 100%;
   background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/518746/art-artistic-black-background-752484-min.jpg");
     background-size: cover;
+}
+body::before{
+  width: 100%;
+  height: 100%;
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-image: linear-gradient(
+    to bottom right,
+    rgba(29, 38, 113, 0.75),
+    rgba(195, 65, 150, 0.75)
+  );
+  background-size: auto;
+  z-index: -1;
+
 }
 
 .div-img{
@@ -69,7 +90,7 @@ body {
   width: 90px;
   border-radius: 50%;
   object-fit: cover;
-  box-shadow: 3px 3px 10px black;
+  box-shadow: 2px 2px 5px white;
 }
 .profile-img:hover{
   transform: scale(1.1);
@@ -82,12 +103,14 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 50;
   
 
 }
 
 .main-img{
-  box-shadow: 3px 3px 10px black;
+  box-shadow: 1px 3px 10px white;
+  z-index: 10;
   height: 130px;
   width: 130px;
   border-radius: 50%;
@@ -123,22 +146,27 @@ body {
 }
 
 .heading{
+  border: 3px solid white;
   font-size: 60px;
-  color: black;
-  text-shadow: 5px 5px 3px white;
+  width: max-content;
+  padding: 5px 15px;
+  margin-inline: auto;
+  color: white;
+  text-shadow: 3px 3px 3px white;
   text-align: center;
   text-decoration-style: double;
   margin-top: 20px;
+  z-index: 20;
 }
 
 .btn{
   /* animation: pulse infinite  ease-in-out alternate; */
-  margin-top: 30px;
-  margin: 40px auto;
-  background: white;
+  margin:  auto;
+  margin-block: 40px;
+  background: rgb(56, 126, 255,0.6);
   border-radius: 20px;
-  border: 2px solid orange;
-  color: orange;
+  border: 4px solid #387eff;
+  color: white;
   display: flex;
   text-decoration: none;
   font-size: 30px;

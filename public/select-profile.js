@@ -5,15 +5,6 @@ const button = document.querySelector('.btn');
 const innerDiv = document.createElement('div');
 innerDiv.classList.add('inside-container');
 
-anime({
-targets: '.btn',
-scale: [1 ,1.1],
-loop : true,
-direction: 'alternate',
-easing: 'linear'
-
-})
-
 button.addEventListener("click", () =>{
     window.location.href = "/gallery.html"
 })

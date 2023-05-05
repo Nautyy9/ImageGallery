@@ -5,6 +5,7 @@ const button = document.querySelector('.btn');
 const innerDiv = document.createElement('div');
 innerDiv.classList.add('inside-container');
 
+
 button.addEventListener("click", () =>{
     window.location.href = "/gallery.html"
 })

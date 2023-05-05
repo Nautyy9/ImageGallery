@@ -5,10 +5,11 @@ import multer from "multer";
 const route = express.Router();
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
+        console.log(file, "dest")
         cb(null, 'Images');
     },
     filename: (req, file, cb) => {
-        // console.log(file);
+        console.log(file , "filename");
         cb(null, Date.now() + path.extname(file.originalname));
     }
 });

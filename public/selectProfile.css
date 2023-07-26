@@ -10,9 +10,28 @@
 }
 @import url('https://fonts.googleapis.com/css?family=Quicksand');
 
+body::-webkit-scrollbar {
+  width: 12px;               /* width of the entire scrollbar */
+}
 
+body::-webkit-scrollbar-track {
+  background-image: linear-gradient(
+    to bottom right,
+    rgba(29, 38, 113, 0.75),
+    rgba(195, 65, 150, 0.75)
+  );       /* color of the tracking area */
+  background-clip: inherit;
+}
+
+body::-webkit-scrollbar-thumb {
+   background-color: white;  /* color of the scroll thumb */
+  border-radius: 30px;       /* roundness of the scroll thumb */
+  border: 3px solid white;  /* creates padding around scroll thumb */
+}
 
 body {
+  scrollbar-width: thin;          /* "auto" or "thin" */
+  scrollbar-color: blue orange; 
   width: 100%;
   height: 100%;
   background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/518746/art-artistic-black-background-752484-min.jpg");

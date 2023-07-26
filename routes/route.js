@@ -1,6 +1,5 @@
 import express from "express"
-import path from "path"
-import { getSingleHero, postSingleHero , getProfile} from "../controller/controllers.js";
+import { getSingleHero, postSingleHero , getProfile, deletePicture} from "../controller/controllers.js";
 import multer from "multer";
 
 const route = express.Router();
@@ -35,8 +34,9 @@ const upload = multer({
 
 
 route.get('/gallery', getSingleHero);
-route.post('/gallery',upload.single('image'), postSingleHero);
+route.post('/gallery', upload.single('image'), postSingleHero);
 route.get('/get-profile', getProfile)
+route.post('/gallery/image', deletePicture);
 // route.post('/profile', postSingleHeroProfile)
 // route.get('/gallery.html', getSingleHero);
 export default route;

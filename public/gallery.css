@@ -1,10 +1,27 @@
 *{
     margin: 0;
-    padding: 0;
+        padding: 0;
 }
 @import url('https://fonts.googleapis.com/css?family=Quicksand');
 
+body::-webkit-scrollbar {
+  width: 12px;               /* width of the entire scrollbar */
+}
 
+body::-webkit-scrollbar-track {
+  background: #FCBA7F;        /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: white;    /* color of the scroll thumb */
+  border-radius: 30px;       /* roundness of the scroll thumb */
+  border: 3px solid #FCBA7F;  /* creates padding around scroll thumb */
+}
+
+body {
+  scrollbar-width: thin;          /* "auto" or "thin" */
+  scrollbar-color: blue orange; 
+}
 :root{
   --primary: #efb6b2;
   --secondary: #4e4e4e;
@@ -105,12 +122,14 @@
     }
   }
   .divmap{
-    padding: 10% 0;
+    margin: 10% 0;
+    position: relative;
   }
   
   .divimg{
     position: relative;
     opacity: 0.8;
+    border: #FCBA7F 2px solid;
     width: 450px;
     height: 450px;
     transition-duration: 0.6s;
@@ -131,7 +150,33 @@
     opacity: 1;
     cursor: pointer;
   }
-
+  
+.yoho_btn {
+  background-color: white !important;
+  position: absolute;
+  top: 0%;
+  right: 0%;
+  height: 50px;
+  width: 50px;
+  border-bottom-left-radius: 50%;
+  border-left: #FCBA7F  2px solid ;
+  border-bottom: #FCBA7F 2px solid ;
+  border-top:  #FCBA7F 2px solid;
+  border-right:#FCBA7F   2px solid;
+  font-size: large;
+  font-weight: 600;
+  color: #FCBA7F;
+  text-align: center;
+}
+.span_tooltip{
+  position: absolute;
+  top: -1.5rem;
+  right: 0rem;
+  color: #FCBA7F;
+  white-space: nowrap;
+  font-weight: 600;
+  font-size: medium;
+}
   .container3{
     /* top: 10rem; */
     overflow: hidden;
@@ -163,7 +208,7 @@
     border-radius: 50%;
     margin: 10px auto;
     line-height: 30px;
-    color: white;;
+    color: white;
     font-weight: bold;
     font-size: 24px;
   }
@@ -272,4 +317,3 @@
       flex-direction: column;
     }
   }
-

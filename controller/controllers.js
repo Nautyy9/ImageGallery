@@ -30,12 +30,13 @@ catch(err){
 
 export const postSingleHero = async (req, res) => {
     try{
+        console.log('here', req.cookies)
         const cookie = req.cookies
         const db = await model.find()
-        console.log(db)
+        console.log(db, 'yaha aaaja')
         console.log(cookie, 'suiii');
         const file = req.file
-        // console.log(file.fileName);
+        console.log(file.fileName);
         if(db.length>=1 && cookie.profile && cookie.mail){
             const mgsave = new model({
                 userMail : cookie.mail,
@@ -101,7 +102,7 @@ export const postSingleHero = async (req, res) => {
 export const getProfile = async  (req,res) =>{
     try{
         const getdb = await profile.find();
-        console.log(getdb)
+        // console.log(getdb)
         if(getdb.length > 0){
             res.status(200).json(getdb);
         }
@@ -109,5 +110,20 @@ export const getProfile = async  (req,res) =>{
     }
     catch(err) {
         console.log(err.message);
+    }
+}
+
+export const deletePicture = async (req, res) => {
+    try {
+        const fileName = Object.keys(req.body)[0]
+        const reqImage = fileName.split('/').join("\\\\") 
+        if(fileName.length >0){
+            await model.deleteOne({ where : {file : reqImage}})
+        }
+
+        res.status(200).json({"msg": "done"})
+    }
+    catch(err){
+        res.status(400).json({"msg": ""})
     }
 }

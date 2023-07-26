@@ -11,6 +11,7 @@ const div3 = document.querySelector('#container3');
 const btn = document.querySelector('.btn');
 const image = document.querySelector('.profile');
 const headp = document.querySelector('.headerp');
+
 // const images = [
 //     "Screenshot 2022-12-11 225914.png",
 //     "Screenshot 2022-11-21 015904.png",
@@ -71,18 +72,18 @@ inFile.onchange = async () => {
     neededType = new need(selected, error);
     if (selected && types.includes(selected.type)) {
         formData.append('image', selected)
-        var requestOptions = {
+        // console.log(formData)
+        var requestOptions = 
+        {
             method: 'POST',
             body: formData,
             redirect: 'follow'
         };
-        
-        
         await fetch('/gallery', requestOptions)
         .then(response => response.json())
         .then(result => console.log(result) )
         .then(() => window.location.reload(true))
-        .catch(error => alert(error));
+        .catch(error => console.log(error));
         // console.log(neededType.type);
         // console.log(neededType.error)
         // console.log(neededType.type)
@@ -97,9 +98,8 @@ const all = document.cookie;
 // console.log(all.split(';'))
 
 // const arr =[];
-console.log(cookieProfile, value, 'shir')
+// console.log(cookieProfile, value, 'shir')
 const getDb = async () => {
-   
     var mainArr = new Array;
     try{
     await fetch('/gallery')
@@ -116,13 +116,15 @@ const getDb = async () => {
     }
     
 
-    const data = mainArr.map((val) => {
+    const  data = mainArr.map((val) => {
         var imgdiv = document.createElement("div");
         var img = document.createElement("img");
+        
         imgdiv.classList.add("divmap");
         imgdiv.setAttribute("key", val._id);
         img.classList.add("divimg");
         img.src = `/${val.file}`;
+        // console.log(val.file, 'dsfhajfdlk')
         img.loading = 'lazy';
         image.loading = 'lazy'
         // console.log(mainArr[0]);
@@ -135,17 +137,58 @@ const getDb = async () => {
             image.src = `/${cookieProfile}` 
         }
         imgdiv.appendChild(img);
+        const outHtml=  `${imgdiv.outerHTML}`
+        // console.log(outHtml)
         // arr.push(imgdiv);
         // console.log(imgdiv);
         // You could use the outerHTML property of the html element so that your array only contains string, and then sanitize these strings in the template so that the html can be displayed`
-        return `${imgdiv.outerHTML}`
+        return outHtml
 
         // return `<div class="divmap" key=${val._id}> 
         //     <img src=${'/'+val.file} class="divimg"/>
         // </div>`
-    }).reverse().join('')
-    // console.log(data);
-    div2.innerHTML = data;
+    })
+    const images = data.reverse().join('')
+    div2.innerHTML = images;
+    
+    for (const node of div2.childNodes){
+        const bttn = document.createElement("button")
+        const spanTooltip = document.createElement("span")
+        spanTooltip.innerText = "Delete Image?!"
+        spanTooltip.classList.add("span_tooltip")
+        bttn.classList.add("yoho_btn")
+        bttn.innerText = "X"
+        bttn.appendChild(spanTooltip)
+        spanTooltip.style.visibility = "hidden"
+        bttn.onmouseenter = (e) =>{
+            spanTooltip.style.visibility = "visible"
+        }
+        bttn.onmouseleave = (e) =>{
+            spanTooltip.style.visibility = "hidden"
+        }
+
+        bttn.onclick = async (e) =>{
+            const imgName =  e.target.offsetParent.childNodes[0].currentSrc.slice(22)
+            await fetch('/gallery/image', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                redirect: "follow",
+                body: imgName
+            })
+            .then((val) =>  val.json())
+            .then((val) => {
+                alert("Image delted successfully 😄")
+                window.location.reload()
+            })
+            .catch((err) =>{
+                alert(err.msg)
+            })
+        }
+        node.appendChild(bttn)
+    }
+
     // console.log(div2.innerHTML);
 }
 catch (error) {
@@ -157,7 +200,6 @@ catch (error) {
 getDb();
 
 btn.style.visibility = "hidden"
-
 div3.style.visibility = "hidden";
 
 btn.onclick = () =>{
